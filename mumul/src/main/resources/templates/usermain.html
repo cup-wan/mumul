@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mumul main</title>
+
+    <link href="/css/user.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/headers/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+
+<body>
+<header>
+    <nav class="py-2 bg-body-tertiary border-bottom">
+        <div class="container d-flex flex-wrap">
+            <ul class="nav me-auto">
+                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Mumul</a></li>
+            </ul>
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="bg-white">
+
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center py-4">
+                <div>
+                    <!-- 받은 질문 페이지 -->
+                    <a href="#" class="d-inline-block text-dark">
+                        <strong>234</strong>
+                        <span class="text-muted">받은 질문</span>
+                    </a>
+                    <!-- 보낸 질문 페이지 -->
+                    <a href="#" class="d-inline-block text-dark ml-3">
+                        <strong>111</strong>
+                        <span class="text-muted">보낸 질문</span>
+                    </a>
+                </div>
+                <div> <!-- 질문하기 버튼 -->
+                    <a href="#" class="btn btn-success btn-sm">
+                        질문하기
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr class="m-0">
+
+        <div class="container">
+            <div class="text-center py-5">
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt class="ui-w-10 rounded-circle">
+
+                <div class="col-md-8 col-lg-6 col-xl-5 p-0 mx-auto">
+                    <h4 class="font-weight-bold my-4">cup-wan</h4>
+                </div>
+
+            </div>
+        </div>
+        <hr class="m-0">
+
+        <ul class="nav nav-tabs tabs-alt justify-content-center" id="myTabs">
+            <li class="nav-item">
+                <a class="nav-link py-4" href="#" data-tab="posts">받은 질문함</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link py-4" href="#" data-tab="likes">보낸 질문함</a>
+            </li>
+        </ul>
+    </div>
+</main>
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        </ul>
+        <p class="text-center text-body-secondary">2023 Web Server Programming</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // JavaScript 코드
+        document.addEventListener("DOMContentLoaded", function () {
+            // 모든 nav-link 요소를 가져오기
+            var tabs = document.querySelectorAll('.nav-link');
+
+            // 각각의 nav-link에 클릭 이벤트 추가
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // 모든 nav-link에서 active 클래스 제거
+                    tabs.forEach(function (t) {
+                        t.classList.remove('active');
+                    });
+
+                    // 클릭한 nav-link에 active 클래스 추가
+                    tab.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
