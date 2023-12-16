@@ -34,12 +34,13 @@ public class Comment {
     @Setter
     private String content;  //내용
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = false, updatable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     private LocalDateTime createdAt;  //생성일시
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
     private LocalDateTime updatedAt;  //수정일시
 

@@ -1,6 +1,7 @@
 package com.example.mumul.domain.post.domain;
 
 import com.example.mumul.domain.comment.domain.Comment;
+import com.example.mumul.domain.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,17 +38,21 @@ public class Post {
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  //ISO 8601
     private LocalDateTime createdAt;  //생성일시
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(nullable = false)
     @LastModifiedDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime updatedAt;  //수정일시
 
     @ToString.Exclude
     @OrderBy("id")
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private final Set<Comment> comments = new LinkedHashSet<>();
+
+    @ManyToOne(optional = false)
+    private User user;
 
 
     protected Post() {}
