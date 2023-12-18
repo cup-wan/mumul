@@ -15,6 +15,10 @@ spring:
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   jpa:
     defer-data-source-initialization: true
     hibernate.ddl-auto: create

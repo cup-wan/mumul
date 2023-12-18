@@ -23,10 +23,14 @@ import java.util.Set;
 @Entity
 public class Post {
 
-    @Column
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(optional = false)
+    @Setter
+    @JoinColumn(name = "userId")
+    private User user;
 
     @Column(nullable = false)
     @Setter
@@ -35,6 +39,11 @@ public class Post {
     @Column(nullable = false, length = 10000)
     @Setter
     private String content;  //내용
+
+    @ToString.Exclude
+    @OrderBy("createdAt DESC")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private final Set<Comment> comment = new LinkedHashSet<>();
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -46,24 +55,18 @@ public class Post {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime updatedAt;  //수정일시
 
-    @ToString.Exclude
-    @OrderBy("id")
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private final Set<Comment> comments = new LinkedHashSet<>();
-
-    @ManyToOne(optional = false)
-    private User user;
 
 
     protected Post() {}
 
-    public Post(String title, String content) {
+    public Post(User user, String title, String content) {
+        this.user = user;
         this.title = title;
         this.content = content;
     }
 
-    public static Post of(String title, String content) {
-        return new Post(title, content);
+    public static Post of(User user,String title, String content) {
+        return new Post(user, title, content);
     }
 
     @Override
