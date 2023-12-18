@@ -1,6 +1,6 @@
 package com.example.mumul.domain.comment.domain;
-
 import com.example.mumul.domain.post.domain.Post;
+import com.example.mumul.domain.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +21,6 @@ import java.util.Objects;
 @Entity
 public class Comment {
 
-    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,16 +47,21 @@ public class Comment {
     @ManyToOne(optional = false)  //반드시 상위 post 있어야 함
     private Post post;  //상위 게시글
 
+    @Setter
+    @JoinColumn(name = "userId")
+    @ManyToOne(optional = false)
+    private User user;  //작성자
+
     protected Comment() {}
 
-    private Comment(String title, String content, Post post) {
-        this.title = title;
-        this.content = content;
+    private Comment(Post post, User user, String content) {
         this.post = post;
+        this.user = user;
+        this.content = content;
     }
 
-    public static Comment of(String title, String content, Post post) {
-        return new Comment(title, content, post);
+    public static Comment of(Post post, User user, String content){
+        return new Comment(post, user, content);
     }
 
     @Override

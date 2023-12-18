@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#header" th:replace="header :: header" />
+
+  <attr sel="main" th:object="${posts}">
+
+    <attr sel="#post-table">
+      <attr sel="thead/tr">
+        <attr sel="th.title/a" th:text="'제목'" th:href="@{/posts(
+            sort='title' + (*{sort.getOrderFor('title')} != null ? (*{sort.getOrderFor('title').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
+        )}"/>
+
+        <attr sel="th.created-at/a" th:text="'작성일'" th:href="@{/posts(
+            sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
+        )}"/>
+      </attr>
+
+      <attr sel="tbody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="post : ${posts}">
+          <attr sel="td.title/a" th:text="${post.title}" th:href="@{'/posts/' + ${post.id}}" />
+          <attr sel="td.created-at/time" th:datetime="${post.createdAt}" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}" />
+        </attr>
+      </attr>
+    </attr>
+  </attr>
+</thlogic>
